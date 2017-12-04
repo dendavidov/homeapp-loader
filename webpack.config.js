@@ -9,7 +9,7 @@ const destinationPath = (process.env.NODE_ENV === 'production') ? 'distr' : 'pub
 const config = {
   entry: './src/index.js',
   output: {
-    filename: 'output.js',
+    filename: 'index.js',
     path: path.resolve(__dirname, `./${destinationPath}`)
   },
   module: {
