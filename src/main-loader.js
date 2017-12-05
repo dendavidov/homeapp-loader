@@ -29,6 +29,14 @@ class MainLoader {
       this.hide();
       return;
     }
+
+    if (
+      /mobile\/map/.test(window.location.href) ||
+      /map\/(.+)/.test(window.location.href)
+    ) {
+      delete MainLoader.overallProgressBase['/api/v2/apartments/smallFormList'];
+    }
+
     this.initLoader();
   }
 
