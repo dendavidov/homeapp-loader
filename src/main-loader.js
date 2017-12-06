@@ -41,6 +41,8 @@ class MainLoader {
   }
 
   show() {
+    if (/\d+$/.test(window.location.href)) return;
+
     this.mainLoaderContainer.style.display = 'flex';
   }
 
