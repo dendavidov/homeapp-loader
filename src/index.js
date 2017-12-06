@@ -7,3 +7,5 @@ import './main-loader.css';
 const mainLoader = new MainLoader();
 
 mainLoader.show();
+
+window.MAIN_LOADER = mainLoader;
