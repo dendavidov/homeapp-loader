@@ -13,7 +13,7 @@ class MainLoader {
   static PERCENTAGE_CONTAINER_ID = 'loaderPercentage';
   static BAR_ID = 'loaderBar';
 
-  static staticAssets = process.env.NODE_ENV === 'production' ? "STATIC_ASSETS" : {};
+  static staticAssets = "STATIC_ASSETS";
 
   static POLYGON_TEXTS = [
     '207 5 202 24 189 29 189 39 193 55 195 72 201 82 219 98 226 106 228 125 232 143 233 177 235 220 238 234 239 249 243 257 252 259 256 269 264 269 269 257 278 257 285 252 292 258 300 241 313 209 315 190 333 172 356 170 357 157 348 150 348 141 370 126 348 103 331 100 304 98 278 92 248 79 218 75 217 49 227 32 221 26 221 15 230 9 213 0',
@@ -76,6 +76,9 @@ class MainLoader {
     ) {
       delete MainLoader.overallProgressBase['/api/v2/apartments/smallFormList'];
     }
+
+    this.getJs();
+    this.getCss();
 
     this.initLoader();
   }
@@ -307,6 +310,49 @@ class MainLoader {
 
       this.realSend(value);
     };
+  }
+
+
+  getJs() {
+    const indexJs = Object.keys(MainLoader.overallProgressBase).find(fileName => /^index\S*\.js$/.test(fileName));
+    if (!indexJs) return;
+
+    const xhr = new XMLHttpRequest();
+    const tag = document.createElement('script');
+    xhr.open('GET', `/client/${indexJs}`, true);
+    xhr.onload = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          tag.text = xhr.response;
+          document.body.appendChild(tag);
+        } else {
+          // eslint-disable-next-line no-console
+          console.error(xhr.response);
+        }
+      }
+    };
+    xhr.send();
+  }
+
+  getCss() {
+    const indexCss = Object.keys(MainLoader.overallProgressBase).find(fileName => /^index\S*\.css$/.test(fileName));
+    if (!indexCss) return;
+
+    const xhr = new XMLHttpRequest();
+    const styleTag = document.createElement('style');
+    xhr.open('GET', `/client/${indexCss}`, true);
+    xhr.onload = function() {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          styleTag.innerText = xhr.response;
+          document.head.appendChild(styleTag);
+        } else {
+          // eslint-disable-next-line no-console
+          console.error(xhr.response);
+        }
+      }
+    };
+    xhr.send();
   }
 }
 
