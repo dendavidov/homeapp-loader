@@ -250,16 +250,15 @@ class MainLoader {
         return;
       }
       currentTextId = id;
+
       for (let i = 1; i <= 3; i++) {
         window.document.getElementById(
           MainLoader.TEXT_CONTAINER_ID + i
         ).style.opacity = 0;
       }
-      setTimeout(function() {
-        window.document.getElementById(
-          MainLoader.TEXT_CONTAINER_ID + id
-        ).style.opacity = 1;
-      }, 300);
+      window.document.getElementById(
+        MainLoader.TEXT_CONTAINER_ID + id
+      ).style.opacity = 1;
     }
 
     const removeLoader = this.hide;
@@ -273,7 +272,6 @@ class MainLoader {
           const responseURL = this.responseURL;
 
           if (responseURL.indexOf('mapbox') >= 0) return;
-          // var that = this;
 
           const assets = Object.keys(MainLoader.overallProgressBase);
 
