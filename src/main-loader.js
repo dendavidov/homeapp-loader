@@ -112,6 +112,7 @@ class MainLoader {
 
     let animatedPolygon = 0;
     let animatedPolygonDirection = 1;
+    let percentage = 0;
 
     // todo fix it
     // var curPolygonOrder = 3;
@@ -288,7 +289,9 @@ class MainLoader {
             MainLoader.overallProgressBase[overallProgressBaseItem] = +length;
           }
           MainLoader.overallProgress[responseURL] = oEvent.loaded;
-          const percentage = Math.round(MainLoader.calcOverall() / goal * 100);
+          const newPercentage = Math.round(MainLoader.calcOverall() / goal * 100);
+          if (newPercentage > percentage) percentage = newPercentage;
+
           const loaderPercentage = window.document.getElementById(
             MainLoader.PERCENTAGE_CONTAINER_ID
           );
@@ -310,8 +313,7 @@ class MainLoader {
 
       this.realSend(value);
     };
-  }
-
+  };
 
   getJs() {
     const indexJs = Object.keys(MainLoader.overallProgressBase).find(fileName => /^index\S*\.js$/.test(fileName));
