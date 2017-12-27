@@ -30,9 +30,9 @@ class MainLoader {
 
   static overallProgressBase = {
     ...MainLoader.staticAssets,
-    '/api/v2/apartments/getDistrictsGeojson': 1065810,
-    '/api/v2/apartments$': 225511,
-    '/api/v2/apartments/index': 7303247,
+    '/api/v2/apartmentss/getDistrictsGeojson': 1065810,
+    '/api/v2/apartmentss$': 225511,
+    '/api/v2/apartmentss/index': 7303247,
     '/api/v2/apartments/smallFormList': 19172,
   };
 
