@@ -84,7 +84,7 @@ class MainLoader {
   }
 
   show() {
-    if (/\d+$/.test(window.location.href)) return;
+    if (/\d+$/.test(window.location.href) || /\/chat/.test(window.location.href)) return;
 
     this.mainLoaderContainer.style.display = 'flex';
   }
