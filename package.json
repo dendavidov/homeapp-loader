@@ -1,5 +1,5 @@
 {
-  "name": "main-loader",
+  "name": "homeapp-loader",
   "version": "0.0.1",
   "description": "main loader for homeapp project",
   "main": "index.js",
