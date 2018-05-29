@@ -30,10 +30,10 @@ class MainLoader {
 
   static overallProgressBase = {
     ...MainLoader.staticAssets,
-    '/api/v2/apartments/getDistrictsGeojson': 1065810,
-    '/api/v2/apartments$': 225511,
-    '/api/v2/apartments/index': 7303247,
-    '/api/v2/apartments/smallFormList': 19172,
+    '/api/v2/apartments/getDistrictsGeojson': 1441395,
+    '/api/v2/apartments$': 339709,
+    '/api/v2/apartments/index': 16487564,
+    // '/api/v2/apartments/smallFormList': 19172,
   };
 
   static overallProgress = {};
@@ -70,12 +70,12 @@ class MainLoader {
       return;
     }
 
-    if (
-      /mobile\/map/.test(window.location.href) ||
-      /map\/(.+)/.test(window.location.href)
-    ) {
-      delete MainLoader.overallProgressBase['/api/v2/apartments/smallFormList'];
-    }
+    // if (
+    //   /mobile\/map/.test(window.location.href) ||
+    //   /map\/(.+)/.test(window.location.href)
+    // ) {
+    //   delete MainLoader.overallProgressBase['/api/v2/apartments/smallFormList'];
+    // }
 
     this.getJs();
     this.getCss();
