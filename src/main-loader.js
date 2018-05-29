@@ -51,7 +51,6 @@ class MainLoader {
     for (let url in MainLoader.overallProgressBase) {
       total += MainLoader.overallProgressBase[url];
     }
-    console.log('calcOverallStatic total', total);
     return total;
   };
 
@@ -60,7 +59,6 @@ class MainLoader {
     for (let url in MainLoader.overallProgress) {
       total += MainLoader.overallProgress[url];
     }
-    console.log('calcOverall total', total);
     return total;
   };
 
@@ -231,7 +229,6 @@ class MainLoader {
     };
 
     function setPercentage(percent) {
-      console.log('setPercentage', percent);
       const polygonsCount = polygons.length;
       const percentPerPolygon = 100 / polygonsCount;
       const showPolygonsCnt = Math.floor(percent / percentPerPolygon);
@@ -293,13 +290,9 @@ class MainLoader {
           } else {
             MainLoader.overallProgressBase[overallProgressBaseItem] = 0;
           }
-          console.log('MainLoader.overallProgressBase', MainLoader.overallProgressBase);
           MainLoader.overallProgress[responseURL] = oEvent.loaded;
-          console.log('MainLoader.overallProgress', MainLoader.overallProgress);
           const newPercentage = Math.round(MainLoader.calcOverall() / goal * 100);
-          console.log('newPercentage > percentage', newPercentage, percentage);
           if (newPercentage > percentage) percentage = newPercentage;
-          console.log('percentage', percentage);
 
           const loaderPercentage = window.document.getElementById(
             MainLoader.PERCENTAGE_CONTAINER_ID
