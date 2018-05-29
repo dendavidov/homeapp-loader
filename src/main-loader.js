@@ -36,7 +36,9 @@ class MainLoader {
     '/api/v2/apartments/smallFormList': 0,
   };
 
-  static overallProgress = {};
+  static overallProgress = {
+      ...MainLoader.staticAssets,
+  };
 
   static calcDistance(point1, point2) {
     return (
