@@ -33,7 +33,7 @@ class MainLoader {
     '/api/v2/apartments/getDistrictsGeojson': 1441395,
     '/api/v2/apartments$': 339709,
     '/api/v2/apartments/index': 16487564,
-    // '/api/v2/apartments/smallFormList': 19172,
+    '/api/v2/apartments/smallFormList': 19172,
   };
 
   static overallProgress = {};
@@ -70,12 +70,12 @@ class MainLoader {
       return;
     }
 
-    // if (
-    //   /mobile\/map/.test(window.location.href) ||
-    //   /map\/(.+)/.test(window.location.href)
-    // ) {
-    //   delete MainLoader.overallProgressBase['/api/v2/apartments/smallFormList'];
-    // }
+    if (
+      /mobile\/map/.test(window.location.href) ||
+      /map\/(.+)/.test(window.location.href)
+    ) {
+      delete MainLoader.overallProgressBase['/api/v2/apartments/smallFormList'];
+    }
 
     this.getJs();
     this.getCss();
@@ -285,6 +285,8 @@ class MainLoader {
           const length = this.getResponseHeader('X-Content-Length');
           if (length) {
             MainLoader.overallProgressBase[overallProgressBaseItem] = +length;
+          } else {
+            MainLoader.overallProgressBase[overallProgressBaseItem] = 0;
           }
           MainLoader.overallProgress[responseURL] = oEvent.loaded;
           const newPercentage = Math.round(MainLoader.calcOverall() / goal * 100);
